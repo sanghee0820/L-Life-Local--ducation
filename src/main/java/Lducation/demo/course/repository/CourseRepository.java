@@ -1,7 +1,7 @@
-package Lducation.demo.repository;
+package Lducation.demo.course.repository;
 
 
-import Lducation.demo.domain.Course;
+import Lducation.demo.course.domain.Course;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package Lducation.demo.domain;
+package Lducation.demo.course.domain;
 
 public enum Day {
     MONDAY("월요일"),

@@ -1,4 +1,4 @@
-package Lducation.demo.domain;
+package Lducation.demo.course.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

@@ -1,6 +1,6 @@
-package Lducation.demo.service;
+package Lducation.demo.course.service;
 
-import Lducation.demo.configure.KakaoMapConfig;
+import Lducation.demo.course.configure.KakaoMapConfig;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;

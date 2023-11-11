@@ -1,8 +1,8 @@
-package Lducation.demo.controller;
+package Lducation.demo.course.controller;
 
-import Lducation.demo.dto.CourseDTO;
-import Lducation.demo.service.CourseService;
-import Lducation.demo.service.KakaoMapService;
+import Lducation.demo.course.dto.CourseDTO;
+import Lducation.demo.course.service.CourseService;
+import Lducation.demo.course.service.KakaoMapService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

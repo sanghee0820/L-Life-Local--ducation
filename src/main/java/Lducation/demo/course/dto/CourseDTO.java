@@ -1,6 +1,6 @@
-package Lducation.demo.dto;
+package Lducation.demo.course.dto;
 
-import Lducation.demo.domain.Course;
+import Lducation.demo.course.domain.Course;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import lombok.Builder;

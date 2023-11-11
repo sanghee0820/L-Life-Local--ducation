@@ -1,4 +1,4 @@
-package Lducation.demo.configure;
+package Lducation.demo.course.configure;
 
 
 import lombok.Getter;

@@ -1,8 +1,8 @@
-package Lducation.demo.service;
+package Lducation.demo.course.service;
 
-import Lducation.demo.domain.Course;
-import Lducation.demo.dto.CourseDTO;
-import Lducation.demo.repository.CourseRepository;
+import Lducation.demo.course.domain.Course;
+import Lducation.demo.course.dto.CourseDTO;
+import Lducation.demo.course.repository.CourseRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
