@@ -1,7 +1,9 @@
 package Lducation.demo.service;
 
 import Lducation.demo.configure.KakaoMapConfig;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,8 @@ public class KakaoMapService {
                 .bodyToMono(HashMap.class)
                 .block();
 
-        log.info(String.valueOf(data));
+        LinkedHashMap responseData = ((LinkedHashMap) ((ArrayList) data.get("documents")).get(0));
+        log.info(String.valueOf(responseData.get("region_2depth_name")));
         return data;
     }
 }
