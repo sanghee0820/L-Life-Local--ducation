@@ -1,6 +1,6 @@
 package Lducation.demo.controller;
 
-import Lducation.demo.domain.Course;
+import Lducation.demo.dto.CourseDTO;
 import Lducation.demo.service.CourseService;
 import Lducation.demo.service.KakaoMapService;
 import java.util.List;
@@ -20,11 +20,11 @@ public class InfoController {
     private final CourseService courseService;
 
     @GetMapping("/info")
-    public ResponseEntity<List<Course>> getPosition(
+    public ResponseEntity<List<CourseDTO>> getPosition(
             @RequestParam(value = "x") final String latitude,
             @RequestParam(value = "y") final String longitude) {
 
-        List<Course> courseInfo =
+        List<CourseDTO> courseInfo =
                 courseService.getCourseInfo(googleMapService.getPosition(latitude, longitude));
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(courseInfo);
