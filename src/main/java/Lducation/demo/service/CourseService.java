@@ -19,24 +19,6 @@ public class CourseService {
     public List<Course> getCourseInfo(String gu) {
 
         List<Course> courses = courseRepository.findByGu(gu);
-        courses.add(new Course(
-                1L,
-                "test",
-                "test",
-                "test",
-                LocalDate.now(),
-                LocalDate.now().plusDays(7),
-                LocalTime.of(9, 0),
-                LocalTime.of(17, 0),
-                "Test Content",
-                Day.MONDAY,
-                "Test Location",
-                20,
-                "Test Agency",
-                "123-456-7890",
-                LocalDate.now(),
-                LocalDate.now().plusDays(7)
-        ));
         log.info(String.valueOf(courses.isEmpty()));
         return courses;
     }
