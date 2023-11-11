@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,12 +17,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Builder
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
-
+    private Long id;
     private String gu;
     private String courseName;
     private String instructorName;
@@ -30,7 +31,6 @@ public class Course {
     private LocalTime startTime;
     private LocalTime endTime;
     private String courseContent;
-
     @Enumerated(EnumType.STRING)
     private Day operatingDays;
     private String location;
