@@ -13,13 +13,26 @@ import org.springframework.web.reactive.function.client.WebClient;
 @RequiredArgsConstructor
 @Slf4j
 public class KakaoMapService {
-
     private final KakaoMapConfig kakaoMapConfig;
 
-    public HashMap<String, Object> getPosition(String latitude, String longitude) {
+    public String getPosition(String latitude, String longitude) {
+        HashMap<String, Object> data = this.callKakaoMapAPI(latitude, longitude);
+
+        try {
+            LinkedHashMap responseData = ((LinkedHashMap) ((ArrayList) data.get("documents")).get(0));
+            log.info(String.valueOf(responseData.get("region_2depth_name")));
+            return String.valueOf(responseData.get("region_2depth_name"));
+        } catch (Exception e) {
+            log.info(e.getMessage());
+            return null;
+        }
+    }
+
+    private HashMap callKakaoMapAPI(String latitude, String longitude) {
 
         WebClient webClient = WebClient.create(kakaoMapConfig.getAPI_URL());
-        HashMap<String, Object> data = webClient.get()
+
+        return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/geo/coord2regioncode")
                         .queryParam("x", latitude)
@@ -29,9 +42,5 @@ public class KakaoMapService {
                 .retrieve()
                 .bodyToMono(HashMap.class)
                 .block();
-
-        LinkedHashMap responseData = ((LinkedHashMap) ((ArrayList) data.get("documents")).get(0));
-        log.info(String.valueOf(responseData.get("region_2depth_name")));
-        return data;
     }
 }
