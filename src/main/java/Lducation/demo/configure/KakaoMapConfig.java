@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:googlemap.properties")
+@PropertySource("classpath:kakaomap.properties")
 @Slf4j
 @Getter
-public class GoogleConfig {
+public class KakaoMapConfig {
 
-    @Value("${GOOGLE_MAP_SECRET_KEY}")
+    @Value("${KAKAO_MAP_SECRET_KEY}")
     private String SECRET_KEY;
+    @Value("${KAKAO_MAP_URL}")
+    private String API_URL;
 
 }
