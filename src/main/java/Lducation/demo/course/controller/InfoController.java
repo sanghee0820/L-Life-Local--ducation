@@ -21,11 +21,15 @@ public class InfoController {
 
     @GetMapping("/info")
     public ResponseEntity<List<CourseDTO>> getPosition(
-            @RequestParam(value = "x") final String latitude,
-            @RequestParam(value = "y") final String longitude) {
-
-        List<CourseDTO> courseInfo =
-                courseService.getCourseInfo(googleMapService.getPosition(latitude, longitude));
+            @RequestParam(value = "x", required = false) final String latitude,
+            @RequestParam(value = "y", required = false) final String longitude) {
+        List<CourseDTO> courseInfo;
+        if (latitude == null && longitude == null) {
+            courseInfo = courseService.getCourseInfoAll();
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(courseInfo);
+        }
+        courseInfo =
+                courseService.getCourseInfoByGu(googleMapService.getPosition(latitude, longitude));
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(courseInfo);
     }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class CourseService {
     private final CourseRepository courseRepository;
 
-    public List<CourseDTO> getCourseInfo(String gu) {
+    public List<CourseDTO> getCourseInfoByGu(String gu) {
 
         List<Course> courses = courseRepository.findByGu(gu);
         List<CourseDTO> courseDTOs = courses.stream()
@@ -24,4 +24,15 @@ public class CourseService {
         log.info(String.valueOf(courses.isEmpty()));
         return courseDTOs;
     }
+
+    public List<CourseDTO> getCourseInfoAll() {
+
+        List<Course> courses = courseRepository.findAll();
+        List<CourseDTO> courseDTOs = courses.stream()
+                .map(CourseDTO::toDTO)
+                .collect(Collectors.toList());
+        log.info(String.valueOf(courses.isEmpty()));
+        return courseDTOs;
+    }
+
 }
