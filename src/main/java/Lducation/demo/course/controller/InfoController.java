@@ -33,8 +33,8 @@ public class InfoController {
     public ResponseEntity<PageDTO> getCourse(
             @RequestParam(value = "gu", required = true) final String gu,
             @RequestParam(value = "page", required = true) final Long page) {
-        PageDTO pageInfo;
-        pageInfo = courseService.getCourseInfoByGu(gu, page);
+        
+        PageDTO pageInfo = courseService.getCourseInfoByGu(gu, page);
         if (pageInfo == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
