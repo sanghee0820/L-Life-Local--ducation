@@ -14,6 +14,7 @@ import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.internet.MimeMultipart;
 import jakarta.mail.util.ByteArrayDataSource;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
@@ -30,21 +31,24 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class MailService {
     private JavaMailSender javaMailSender;
     public static final String FROM_ADDRESS = "dragon6619@naver.com";
 
-    public void mailSend(ApplicationFormDto applicationFormDto) throws MessagingException, IOException {
+    public void mailSend(ApplicationFormDto applicationFormDto, String filePath) throws MessagingException, IOException {
         MimeMessage message = javaMailSender.createMimeMessage();
+        log.info("filepath : " + filePath);
+        File file = new File(filePath);
 
         Module module = getClass().getModule();
-        InputStream inputStream = module.getResourceAsStream("static/appform4 _saving.pdf");
+//        InputStream inputStream = module.getResourceAsStream(filePath);
 
 //        File file = new ClassPathResource("static/appform4 _saving.pdf").getFile();
 //        FileDataSource fds = new FileDataSource(file);
 //        FileDataSource fds2 = new FileDataSource(inputStream.toString());
 
-        InputStreamSource inputStreamSource = new InputStreamResource(inputStream);
+//        InputStreamSource inputStreamSource = new InputStreamResource(inputStream);
 
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, true, "UTF-8");
 
@@ -55,11 +59,12 @@ public class MailService {
 //        mimeMessageHelper.addAttachment("appform4 _saving.pdf",inputStreamSource);
         message.setFrom(MailService.FROM_ADDRESS);
 
-        DataSource dataSource = new ByteArrayDataSource(inputStream, "application/pdf");
-        mimeMessageHelper.addAttachment("appform4_saving.pdf", dataSource);
+//        DataSource dataSource = new ByteArrayDataSource(inputStream, "application/pdf");
+//        mimeMessageHelper.addAttachment("appform4_saving.pdf", dataSource);
+        mimeMessageHelper.addAttachment("appform4_saving.pdf",file);
 
 
-        inputStream.close();
+//        inputStream.close();
 
         javaMailSender.send(message);
     }

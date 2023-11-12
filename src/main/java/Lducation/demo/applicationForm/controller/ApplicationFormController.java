@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 @AllArgsConstructor
@@ -18,7 +19,7 @@ public class ApplicationFormController {
     private final ApplicationFormService applicationFormService;
 
     @PostMapping("/app")
-    public ResponseEntity<?> addTextInPdf(@RequestBody ApplicationFormDto applicationFormDto) throws IOException {
+    public ResponseEntity<?> addTextInPdf(@RequestBody ApplicationFormDto applicationFormDto) throws IOException, URISyntaxException {
 
         applicationFormService.AddTextToPdf(applicationFormDto);
 

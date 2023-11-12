@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 @RestController
 @AllArgsConstructor
@@ -22,10 +23,10 @@ public class MailController {
     private final ApplicationFormService applicationFormService;
 
     @PostMapping("/mail")
-    public void exexMail(@RequestBody ApplicationFormDto applicationFormDto) throws MessagingException, IOException {
+    public void exexMail(@RequestBody ApplicationFormDto applicationFormDto) throws MessagingException, IOException, URISyntaxException {
 
-        applicationFormService.AddTextToPdf(applicationFormDto);
-        mailService.mailSend(applicationFormDto);
+        String filepath = applicationFormService.AddTextToPdf(applicationFormDto);
+        mailService.mailSend(applicationFormDto,filepath);
     }
 
 }

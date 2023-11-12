@@ -1,8 +1,13 @@
 package Lducation.demo.applicationForm.service;
 
 import Lducation.demo.applicationForm.dto.ApplicationFormDto;
+
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -27,22 +32,29 @@ import java.util.List;
 @Slf4j
 public class ApplicationFormService {
     private final ResourceLoader resourceLoader;
-    public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
+    public String AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException, URISyntaxException {
 
         Module module = getClass().getModule();
         InputStream inputStream = module.getResourceAsStream("static/appform4.pdf");
 
-        Module module1 = getClass().getModule();
+        /*Module module1 = getClass().getModule();
         InputStream inputStream1 = module1.getResourceAsStream("static/appform4.pdf");
 
-        OutputStream outputStream = new FileOutputStream("appform4 _saving.pdf");
+        OutputStream outputStream = new FileOutputStream("appform4_saving.pdf");
         byte[] buffer = new byte[1024]; // 버퍼 생성
 
         int bytesRead;
         while ((bytesRead = inputStream1.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead); // 읽은 데이터를 출력
         }
-        inputStream1.close();
+        inputStream1.close();*/
+
+        ClassLoader classLoader = ApplicationFormService.class.getClassLoader();
+        URL resourceUrl = classLoader.getResource("static/appform4_saving.pdf");
+        log.info("URL: " + resourceUrl);
+        File file = new File(resourceUrl.getFile());
+        log.info("FilePath : " + file.getAbsolutePath());
+        String filePath = file.getCanonicalPath();
 
 //        PDDocument document = PDDocument.load(file);
         PDDocument document = PDDocument.load(inputStream);
@@ -99,12 +111,14 @@ public class ApplicationFormService {
 //        File savefile = new ClassPathResource("static/appform4.pdf").getFile();
 
 //        document.save(new File("/home/ec2-user"));
-        document.save(outputStream);
+//        document.saveIncremental(outputStream);
+        document.save(filePath);
         document.close();
         inputStream.close();
-        outputStream.close();
+//        outputStream.close();
         inputStream2.close();
 
+        return filePath;
     }
 
     public String DateToString(Date date) {
@@ -112,4 +126,5 @@ public class ApplicationFormService {
         String str = format.format(date);
         return str;
     }
+
 }
