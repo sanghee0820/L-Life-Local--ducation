@@ -43,6 +43,9 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //PDF
+    implementation 'org.apache.pdfbox:pdfbox:2.0.29'
 }
 
 tasks.named('bootBuildImage') {
