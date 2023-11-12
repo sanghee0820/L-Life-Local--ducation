@@ -31,7 +31,7 @@ public class CourseDTO {
         return CourseDTO.builder()
                 .id(course.getId())
                 .gu(course.getGu())
-                .courseName(course.getGu())
+                .courseName(course.getCourseName())
                 .instructorName(course.getInstructorName())
                 .startDate(course.getStartDate())
                 .endDate(course.getEndDate())
