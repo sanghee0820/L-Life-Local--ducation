@@ -16,21 +16,6 @@ import org.springframework.stereotype.Service;
 public class CourseService {
     private final CourseRepository courseRepository;
 
-    private boolean validPageSize(Long page, Long maxPage) {
-        if (page < 0 || page > maxPage) {
-            return true;
-        }
-        return false;
-    }
-
-    private List<CourseDTO> splitCourses(List<Course> courses, int startIndex, int endIndex) {
-        return courses.subList(startIndex, endIndex)
-                .stream()
-                .map(CourseDTO::toDTO)
-                .collect(Collectors.toList());
-    }
-
-
     public PageDTO getCourseInfoByGu(String gu, Long page) {
         List<Course> courses = courseRepository.findByGu(gu);
         log.info(String.valueOf(courses.size()));
@@ -61,4 +46,17 @@ public class CourseService {
         return courseDTOs;
     }
 
+    private boolean validPageSize(Long page, Long maxPage) {
+        if (page < 0 || page > maxPage) {
+            return true;
+        }
+        return false;
+    }
+
+    private List<CourseDTO> splitCourses(List<Course> courses, int startIndex, int endIndex) {
+        return courses.subList(startIndex, endIndex)
+                .stream()
+                .map(CourseDTO::toDTO)
+                .collect(Collectors.toList());
+    }
 }
