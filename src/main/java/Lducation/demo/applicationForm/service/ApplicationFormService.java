@@ -6,19 +6,24 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ApplicationFormService {
+    private final ResourceLoader resourceLoader;
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
         File file = new ClassPathResource("static/appform4.pdf").getFile();
+
         PDDocument document = PDDocument.load(file);
 
         PDPage page = document.getPage(0);
@@ -67,8 +72,7 @@ public class ApplicationFormService {
 
         contentStream.close();
 
-        document.save(new File("/Users/gwondoyun/Desktop/hackerton/L-ducation/src/main/resources/static/new.pdf"));
-
+        document.save(new File("/home/ec2-user"));
         document.close();
 
     }
