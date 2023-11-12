@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,4 +22,5 @@ public class MailController {
 
         mailService.mailSend(mailDto);
     }
+
 }

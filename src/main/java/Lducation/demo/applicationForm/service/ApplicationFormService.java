@@ -22,30 +22,51 @@ import java.util.List;
 @AllArgsConstructor
 public class ApplicationFormService {
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
-        File file = new ClassPathResource("static/appForm.pdf").getFile();
+        File file = new ClassPathResource("static/appform4.pdf").getFile();
         PDDocument document = PDDocument.load(file);
 
         PDPage page = document.getPage(0);
         PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
         contentStream.beginText();
 
-        contentStream.setFont(PDType1Font.TIMES_ROMAN, 16);
+        PDFont font = PDType0Font.load(document, new ClassPathResource("static/Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf").getFile());
+        contentStream.setFont(font,10);
 
-        List<String> textList = new ArrayList<String>();
-        textList.add(applicationFormDto.getName());
-        textList.add(applicationFormDto.getBirthday());
-        textList.add(applicationFormDto.getSex());
-        textList.add(applicationFormDto.getPhone());
-        textList.add(applicationFormDto.getAddress());
+        contentStream.newLineAtOffset(173,718);
+        String name = applicationFormDto.getName();
+        contentStream.showText(name);
 
-        for(int i=0;i<5;i++){
-            contentStream.newLineAtOffset(100,100*i);
-            String text = textList.get(i);
+        contentStream.newLineAtOffset(0,-20);
+        String birthday = applicationFormDto.getBirthday();
+        contentStream.showText(birthday);
 
-            contentStream.showText(text);
+        contentStream.setFont(font,8);
+        contentStream.newLineAtOffset(0,-34);
+        String phone = applicationFormDto.getPhone();
+        contentStream.showText(phone);
+
+        contentStream.newLineAtOffset(0,-23);
+        String address = applicationFormDto.getAddress();
+        contentStream.showText(address);
+
+        contentStream.newLineAtOffset(0,-15);
+        String addressDetail = applicationFormDto.getAddress_detail();
+        contentStream.showText(addressDetail);
+
+        contentStream.setFont(font,5);
+        String sex = applicationFormDto.getSex();
+        if(sex.equals("male")){
+            contentStream.newLineAtOffset((float) -2.8,57);
         }
+        else {
+            contentStream.newLineAtOffset((float) 18,57);
+        }
+        String dot = "●";
+        contentStream.showText(dot);
 
         contentStream.endText();
+        contentStream.fill();
+        contentStream.stroke();
 
         contentStream.close();
 
