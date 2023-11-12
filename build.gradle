@@ -44,7 +44,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    //applicationForm
+    //PDF
     implementation 'org.apache.pdfbox:pdfbox:2.0.29'
 }
 
