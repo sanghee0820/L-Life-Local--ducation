@@ -16,9 +16,9 @@ public class KakaoMapService {
     private final KakaoMapConfig kakaoMapConfig;
 
     public String getPosition(String latitude, String longitude) {
-        HashMap<String, Object> data = this.callKakaoMapAPI(latitude, longitude);
 
         try {
+            HashMap<String, Object> data = this.callKakaoMapAPI(latitude, longitude);
             LinkedHashMap responseData = ((LinkedHashMap) ((ArrayList) data.get("documents")).get(0));
             log.info(String.valueOf(responseData.get("region_2depth_name")));
             return String.valueOf(responseData.get("region_2depth_name"));
@@ -35,8 +35,8 @@ public class KakaoMapService {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/geo/coord2regioncode")
-                        .queryParam("x", latitude)
-                        .queryParam("y", longitude)
+                        .queryParam("x", longitude)
+                        .queryParam("y", latitude)
                         .build())
                 .header("Authorization", "KakaoAK " + kakaoMapConfig.getSECRET_KEY())
                 .retrieve()
