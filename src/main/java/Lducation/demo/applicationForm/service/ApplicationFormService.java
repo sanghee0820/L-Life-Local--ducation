@@ -16,15 +16,37 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 @Slf4j
 public class ApplicationFormService {
     private final ResourceLoader resourceLoader;
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
-        File file = new ClassPathResource("static/appform4.pdf").getFile();
+//        File file = new ClassPathResource("static/appform4.pdf").getFile();
 
-        PDDocument document = PDDocument.load(file);
+        Module module = getClass().getModule();
+        InputStream inputStream = module.getResourceAsStream("static/appform4.pdf");
+
+        Module module1 = getClass().getModule();
+        InputStream inputStream1 = module1.getResourceAsStream("static/appform4.pdf");
+
+        OutputStream outputStream = new FileOutputStream("appform4 _saving.pdf");
+        byte[] buffer = new byte[1024]; // 버퍼 생성
+
+        int bytesRead;
+        while ((bytesRead = inputStream1.read(buffer)) != -1) {
+            outputStream.write(buffer, 0, bytesRead); // 읽은 데이터를 출력
+        }
+        inputStream1.close();
+
+//        PDDocument document = PDDocument.load(file);
+        PDDocument document = PDDocument.load(inputStream);
 
         PDPage page = document.getPage(0);
         PDPageContentStream contentStream = new PDPageContentStream(document, page,
@@ -72,8 +94,13 @@ public class ApplicationFormService {
 
         contentStream.close();
 
-        document.save(new File("/home/ec2-user"));
+//        File savefile = new ClassPathResource("static/appform4.pdf").getFile();
+
+//        document.save(new File("/home/ec2-user"));
+        document.save(outputStream);
         document.close();
+        inputStream.close();
+        outputStream.close();
 
     }
 
