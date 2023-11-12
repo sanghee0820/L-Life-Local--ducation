@@ -16,5 +16,6 @@ public class ApplicationFormDto {
     private String phone;
     private String address;
     private String address_detail;
+    private String coursename;
 
 }

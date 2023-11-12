@@ -9,6 +9,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -21,8 +22,10 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ApplicationFormService {
+    private final ResourceLoader resourceLoader;
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
         File file = new ClassPathResource("static/appform4.pdf").getFile();
+        File savefile = new ClassPathResource("static/appform4 _saving.pdf").getFile();
         PDDocument document = PDDocument.load(file);
 
         PDPage page = document.getPage(0);
@@ -70,8 +73,7 @@ public class ApplicationFormService {
 
         contentStream.close();
 
-        document.save(new File("/Users/gwondoyun/Desktop/hackerton/L-ducation/src/main/resources/static/new.pdf"));
-
+        document.save(new File("/Users/gwondoyun/Desktop/hackerton/L-ducation/src/main/resources/static/appform4 _saving.pdf"));
         document.close();
 
     }

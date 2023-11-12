@@ -1,10 +1,13 @@
 package Lducation.demo.email.controller;
 
+import Lducation.demo.applicationForm.dto.ApplicationFormDto;
+import Lducation.demo.applicationForm.service.ApplicationFormService;
 import Lducation.demo.email.dto.MailDto;
 import Lducation.demo.email.service.MailService;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -16,11 +19,13 @@ import java.io.IOException;
 @AllArgsConstructor
 public class MailController {
     private final MailService mailService;
+    private final ApplicationFormService applicationFormService;
 
     @PostMapping("/mail")
-    public void exexMail(MailDto mailDto) throws MessagingException, IOException {
+    public void exexMail(@RequestBody ApplicationFormDto applicationFormDto) throws MessagingException, IOException {
 
-        mailService.mailSend(mailDto);
+        applicationFormService.AddTextToPdf(applicationFormDto);
+        mailService.mailSend(applicationFormDto);
     }
 
 }
