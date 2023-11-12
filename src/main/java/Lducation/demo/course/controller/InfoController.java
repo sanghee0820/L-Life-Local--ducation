@@ -23,6 +23,7 @@ public class InfoController {
             @RequestParam(value = "latitude", required = false) final String latitude,
             @RequestParam(value = "longitude", required = false) final String longitude) {
 
+        log.info(latitude + " " + longitude);
         String position = kakaoMapService.getPosition(latitude, longitude);
 
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(position);
