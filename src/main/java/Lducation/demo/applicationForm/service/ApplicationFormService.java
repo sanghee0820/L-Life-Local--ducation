@@ -2,6 +2,7 @@ package Lducation.demo.applicationForm.service;
 
 import Lducation.demo.applicationForm.dto.ApplicationFormDto;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -21,11 +22,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ApplicationFormService {
     private final ResourceLoader resourceLoader;
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
         File file = new ClassPathResource("static/appform4.pdf").getFile();
-        File savefile = new ClassPathResource("static/appform4 _saving.pdf").getFile();
+
         PDDocument document = PDDocument.load(file);
 
         PDPage page = document.getPage(0);
@@ -73,7 +75,7 @@ public class ApplicationFormService {
 
         contentStream.close();
 
-        document.save(new File("/Users/gwondoyun/Desktop/hackerton/L-ducation/src/main/resources/static/appform4 _saving.pdf"));
+        document.save(new File("/home/ec2-user"));
         document.close();
 
     }
