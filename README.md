@@ -1,3 +1,24 @@
-# L-ducation  [2023 대구를 빛내는 SW 해커톤]
-포스트 코로나 시대의 혼란을 해결하는 SW 개발 : 포스트코로나 시대의 지역 문화센터 평생학습 프로그램 활성화 서비스
+# test
 
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
