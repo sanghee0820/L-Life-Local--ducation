@@ -49,7 +49,11 @@ public class ApplicationFormService {
         PDPageContentStream contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true);
         contentStream.beginText();
 
-        PDFont font = PDType0Font.load(document, new ClassPathResource("static/Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf").getFile());
+        Module module2 = getClass().getModule();
+        InputStream inputStream2 = module2.getResourceAsStream("static/AppleSDGothicNeoT.ttf");
+
+//        PDFont font = PDType0Font.load(document, new ClassPathResource("static/Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf").getFile());
+        PDFont font = PDType0Font.load(document,inputStream2);
         contentStream.setFont(font,10);
 
         contentStream.newLineAtOffset(173,718);
@@ -97,6 +101,7 @@ public class ApplicationFormService {
         document.close();
         inputStream.close();
         outputStream.close();
+        inputStream2.close();
 
     }
 
