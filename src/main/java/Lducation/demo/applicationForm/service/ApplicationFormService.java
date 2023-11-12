@@ -28,7 +28,6 @@ import java.util.List;
 public class ApplicationFormService {
     private final ResourceLoader resourceLoader;
     public void AddTextToPdf(ApplicationFormDto applicationFormDto) throws IOException {
-//        File file = new ClassPathResource("static/appform4.pdf").getFile();
 
         Module module = getClass().getModule();
         InputStream inputStream = module.getResourceAsStream("static/appform4.pdf");
@@ -53,9 +52,12 @@ public class ApplicationFormService {
                 PDPageContentStream.AppendMode.APPEND, true);
         contentStream.beginText();
 
-        PDFont font = PDType0Font.load(document,
-                new ClassPathResource("static/Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf").getFile());
-        contentStream.setFont(font, 10);
+        Module module2 = getClass().getModule();
+        InputStream inputStream2 = module2.getResourceAsStream("static/AppleSDGothicNeoT.ttf");
+
+//        PDFont font = PDType0Font.load(document, new ClassPathResource("static/Apple_산돌고딕_Neo/AppleSDGothicNeoT.ttf").getFile());
+        PDFont font = PDType0Font.load(document,inputStream2);
+        contentStream.setFont(font,10);
 
         contentStream.newLineAtOffset(173, 718);
         String name = applicationFormDto.getName();
@@ -101,6 +103,7 @@ public class ApplicationFormService {
         document.close();
         inputStream.close();
         outputStream.close();
+        inputStream2.close();
 
     }
 
