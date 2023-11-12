@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Lducation.demo.LDucationApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-11-11T09:24:32" hostname="gwondoyun-ui-MacBookPro.local" time="0.365">
+  <properties/>
+  <testcase name="contextLoads()" classname="Lducation.demo.LDucationApplicationTests" time="0.365"/>
+  <system-out><![CDATA[Standard Commons Logging discovery in action with spring-jcl: please remove commons-logging.jar from classpath in order to avoid potential conflicts
+18:24:31.650 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [Lducation.demo.LDucationApplicationTests]: LDucationApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:24:31.685 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration Lducation.demo.LDucationApplication for test class Lducation.demo.LDucationApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2023-11-11T18:24:31.813+09:00  INFO 8983 --- [    Test worker] L.demo.LDucationApplicationTests         : Starting LDucationApplicationTests using Java 19.0.2 with PID 8983 (started by gwondoyun in /Users/gwondoyun/Desktop/hackerton/L-ducation)
+2023-11-11T18:24:31.813+09:00  INFO 8983 --- [    Test worker] L.demo.LDucationApplicationTests         : The following 1 profile is active: "secret"
+2023-11-11T18:24:32.192+09:00  INFO 8983 --- [    Test worker] L.demo.LDucationApplicationTests         : Started LDucationApplicationTests in 0.458 seconds (process running for 0.872)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
